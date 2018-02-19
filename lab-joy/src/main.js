@@ -19,9 +19,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="wrapper">
                 <h1>Generate Cowsay Lorem</h1>
-                <button onClick={this.clickButton}>Click Me</button>
+                <div class="center">
+                    <button onClick={this.clickButton}>Click Me</button>
+                </div>
                 <pre>{cowsay.say({ text: this.state.content })}</pre>
             </div>
         );
