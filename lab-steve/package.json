@@ -1,5 +1,5 @@
 {
-  "name": "00-front-end-build",
+  "name": "26-frontend-tooling-and-react",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
