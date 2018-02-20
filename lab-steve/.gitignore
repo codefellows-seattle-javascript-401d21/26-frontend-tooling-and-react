@@ -3,6 +3,7 @@ data/
 mongod.lock
 .test.env
 .vscode/**
+build/**
 
 # Logs
 logs
