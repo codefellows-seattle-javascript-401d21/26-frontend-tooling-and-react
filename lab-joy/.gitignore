@@ -3,7 +3,6 @@ db
 **.env
 temp
 build
-angular
 
 data/note
 

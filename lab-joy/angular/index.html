@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab 26 - Front End Tooling and React - in Angular</title>
+    <!-- But manually building out the cows and using .css files, because I need to learn how to build Angular webpack... -->
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Generate Cowsay LoremNumbers</h1>
+        <div ng-app="randomcow" ng-controller="lorem">
+            <div class="center">
+                <button ng-click="generateRandomIpsum()">Click Me</button>
+            </div>
+            <br />
+<code><pre>
+ __________________
+&lt; {{ipsum}} &gt;
+ ------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre></code>
+        </div>
+    </div>
+</body>
+<script src="main.js" type="text/javascript"></script>
+</html>
