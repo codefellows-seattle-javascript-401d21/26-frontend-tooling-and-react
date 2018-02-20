@@ -1,0 +1,44 @@
+
+h1 {
+  text-align: center;
+    font-size: 45px;
+    color: grey;
+}
+body {
+background-color: rgb(40, 44, 53);
+}
+button {
+  color: pink;
+  background:rgb(40, 44, 53);
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+
+}
+pre {
+color: gray;
+margin: 77px;
+font-size: 22px;
+}
+
+.damnCow {
+margin-left:20%;
+}
+
+
+.button1 {
+  border: solid 1px #f396fa;
+  border-radius: 6px;
+  moz-border-radius: 6px;
+  font-size: 20px;
+  color: pink;
+  padding: 1px 17px;
+  background: #808080;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #808080), color-stop(100%, #808080));
+  background: -moz-linear-gradient(top, #808080 0%, #808080 100%);
+  background: -webkit-linear-gradient(top, #808080 0%, #ff8c00 100%);
+  background: -o-linear-gradient(top, #808080 0%, pink 100%);
+  background: -ms-linear-gradient(top, pink 0%, pink 100%);
+  background: linear-gradient(top, pink 0%, pink 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd500', endColorstr='#ff8c00', GradientType=0);
+}
