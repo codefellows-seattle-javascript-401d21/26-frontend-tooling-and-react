@@ -8,8 +8,8 @@ import * as cowsay from 'cowsay';
 
 let cowlist = [];
 for (let key in cowsay) if (typeof cowsay[key] !== 'function') cowlist.push(key.toString());
-cowlist = cowlist.map(v => <option value={v} key={v}>{v.charAt(0) + v.slice(1).toLowerCase()}</option>);
-
+cowlist = cowlist.filter(n => n !== 'DEFAULT').map(v => <option value={v} key={v}>{v.charAt(0) + v.slice(1).toLowerCase()}</option>);
+cowlist.unshift(<option value="DEFAULT" key="DEFAULT">The Wisest Cow</option>);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   handleClick() {
-    let r = Math.ceil(Math.random() * 2 + 2);
+    let r = Math.ceil(Math.random() * 12 + 2);
     this.setState(() => ({words: cowsay.say({ text: faker.random.words(r), cow: cowsay[this.state.cow]})}));
   }
 
