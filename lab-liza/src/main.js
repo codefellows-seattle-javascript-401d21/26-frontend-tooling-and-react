@@ -3,7 +3,7 @@ import './styles/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';;
 import Faker from 'faker';
-import {say, DRAGON} from 'cowsay';
+import {say, SKELETON} from 'cowsay';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends React.Component {
       <div className="app">
         <h1>Generate Cowsay Lorem</h1>
         <button onClick={this.handleClick}>Moooooooooo!!!!!</button>
-        <pre>{say({ text: this.state.content, cow: DRAGON})}</pre>
+        <pre>{say({ text: this.state.content, cow: SKELETON})}</pre>
       </div>
     )
   }
