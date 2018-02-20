@@ -2,6 +2,8 @@ import './styles/main.scss';
 
 import React from 'react';
 import ReactDom from 'react-dom';
+import faker from 'faker';
+import * as cowsay from 'cowsay'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -21,24 +23,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      content: faker.lorem.sentence(),
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState(prevState => ({count: prevState.count + 1}));
+    this.setState(prevState => ({content: faker.lorem.sentence() }));
   }
 
   render() {
     return (
       <div className="app">
         <Navbar />
-        <h1>Hello World</h1>
-        <p onClick={this.handleClick}>Counter: {this.state.count}</p>
-        {console.log('hello there')}
-        <p>paleo sustainable +1 kitsch four loko Blue Bottle yatta yatta yatta</p>
+        <h1>Cowsay randomise</h1>
+        <div className="buttonholder">
+          <button onClick={this.handleClick}>Click</button>
+        </div>
+        <pre>{cowsay.say({ text: this.state.content})}</pre>
+
       </div>
     );
   }
