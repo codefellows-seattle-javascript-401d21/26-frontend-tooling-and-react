@@ -3,7 +3,7 @@
 import './styles/main.scss';
 
 // const React = require('react')
-import {say, KITTY, ELEPHANT, DRAGON, SHEEP, TURTLE, SQUIRREL} from 'cowsay';
+import {say, KITTY, ELEPHANT, DRAGON, SHEEP, TURTLE, SQUIRREL, WHALE} from 'cowsay';
 import faker from 'faker';
 import React from 'react';
 import ReactDom from 'react-dom';
@@ -62,6 +62,9 @@ class App extends React.Component {
     if(event.target.value === 'SQUIRREL') {
       this.setState({cow: SQUIRREL});
     }
+    if(event.target.value === 'WHALE') {
+      this.setState({cow: WHALE});
+    }
   }
 
   render() {
@@ -77,6 +80,7 @@ class App extends React.Component {
           <option value='SHEEP'>Sheep</option>
           <option value='TURTLE'>Turtle</option>
           <option value='SQUIRREL'>Squirrel</option>
+          <option value='WHALE'>Whale</option>
         </select>
         <button onClick={this.handleClick}>Click Me</button>
         <pre>{say({
