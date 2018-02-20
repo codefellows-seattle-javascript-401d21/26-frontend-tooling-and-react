@@ -4,20 +4,21 @@ import './style/main.scss';
 // const React = require('react')
 import React from 'react';
 import ReactDom from 'react-dom';
-import { say } from 'cowsay';
+import cowsay from 'cowsay';
 import Faker from 'faker';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        text: cowsay.say({text: 'Click Me!'}),
+      text: cowsay.say({text: 'Click Me!'}),
     };
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState(prevState => ({text: say({text: Faker.random.words(4)})}));
+    let sentence = Math.ceil(Math.random()* 12 + 2);
+    this.setState(() => ({text: cowsay.say({text: Faker.random.words(sentence)})}));
   }
 
   render() {
@@ -29,7 +30,7 @@ class App extends React.Component {
       </div>
     );
   }
-};
+}
 
 ReactDom.render(<App />, document.getElementById('root'));
 
