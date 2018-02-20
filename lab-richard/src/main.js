@@ -4,27 +4,27 @@ import './style/main.scss';
 // const React = require('react')
 import React from 'react';
 import ReactDom from 'react-dom';
-import cowsay from 'cowsay';
+import { say } from 'cowsay';
 import Faker from 'faker';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: cowsay.say({text: 'Click Me!'}),
+      text: say({text: 'Click Me!'}),
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     let sentence = Math.ceil(Math.random()* 12 + 2);
-    this.setState(() => ({text: cowsay.say({text: Faker.random.words(sentence)})}));
+    this.setState(() => ({text: say({text: Faker.random.words(sentence)})}));
   }
 
   render() {
     return (
       <div className="app">
-        <h1>A Cow Says:</h1>
+        <h1>Generate Cowsay Lorem:</h1>
         <button onClick={this.handleClick}>Click Me!</button>
         <pre>{this.state.text}</pre>
       </div>
