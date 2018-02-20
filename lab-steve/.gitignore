@@ -2,6 +2,7 @@
 data/
 mongod.lock
 .test.env
+.vscode/**
 
 # Logs
 logs
