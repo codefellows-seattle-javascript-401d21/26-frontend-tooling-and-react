@@ -1,0 +1,18 @@
+.app {
+  border: 3px solid black;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFOsjpwW8NyKMlGS5-wkyX1kGDSOReTjznh3Cp_9eYPFLXOetMEQ');
+  background-size: 100%;
+  width: 1200px;
+  height: 750px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.app pre {
+  width: 80%;
+  position: absolute;
+  bottom: 220px;
+  left: 350px;
+  font-size: 18px;
+  font-weight: bold;
+}
