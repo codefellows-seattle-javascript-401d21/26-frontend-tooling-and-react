@@ -10,13 +10,13 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      say: 'wat?'
+      content: 'wat?'
     }
     this.handleClick = this.handleClick.bind(this)
   }
   
   handleClick() {
-    this.setState(prevState => ({say: faker.lorem.slug()}))
+    this.setState(prevState => ({content: faker.lorem.slug()}))
   }
 
 render() {
@@ -24,7 +24,7 @@ render() {
     <div className="app">
       <h1>Generate Turtlesay Lorem</h1>
       <button onClick={this.handleClick}>click me</button>
-      <pre>{cowsayBrowser.say({ text: this.state.say, f: 'turtle' })}</pre>
+      <pre>{cowsayBrowser.say({ text: this.state.content, f: 'turtle' })}</pre>
     </div>
     )
   }
