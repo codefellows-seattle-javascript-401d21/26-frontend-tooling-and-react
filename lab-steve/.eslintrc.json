@@ -35,18 +35,18 @@
     "browser": true,
     "commonjs": true
   },
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "classes": true,
-    "jsx": true,
-    "templateStrings": true,
-    "spread": true,
-    "modules": true,
-    "experimentalObjectRestSpread": true,
-    "impliedStrict": true
-  },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "classes": true,
+      "jsx": true,
+      "templateStrings": true,
+      "spread": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true,
+      "impliedStrict": true
+    }
   },
   "extends": "eslint:recommended"
 }
