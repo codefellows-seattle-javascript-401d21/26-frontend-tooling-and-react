@@ -1,4 +1,4 @@
-// import './styles/main.scss'
+import './styles/main.scss'
 
 import React from 'react';
 import ReactDom from 'react-dom';
@@ -33,27 +33,30 @@ class SearchForm extends React.Component {
     this.props.update_state(this.state.topic, this.state.num);
   }
 
+
   render() {
     return (
       <form
-        className='search-form'
+        className='search_form'
         onSubmit={this.handleSubmit}>
 
-        <input
+        <h1>WELCOME TO REDDIT SEARCH</h1>
+        <div className='box'>
+        <input className={this.props.error ? 'error' : 'input'}
           type='text'
           name='topic'
           value={this.state.topic}
           onChange={this.handleChange}
           placeholder='pick your topic'/>
 
-          <input
+        <input className={this.props.error ? 'error' : 'input'}
           type='number'
           max='100'
           name='limit'
           value={this.state.num}
           onChange={this.handleLimitChange}
           placeholder='pick your topic'/>
-
+        </div>
         <button type='submit'>Search</button>
 
       </form>
@@ -73,7 +76,7 @@ class Results extends React.Component {
         {this.props.topic ?
           <section className='topic-data'>
             {console.log(this.props.topic)}
-            <h2> Results</h2>
+            <h2> Results for {this.props.topic.data.children[0].data.subreddit}</h2>
             <ul>
               {this.props.topic.data.children.map((a, b) => {
                 return <li key={b}>
@@ -127,7 +130,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='application'>
-        <SearchForm update_state={this.updateState}/>
+        <SearchForm update_state={this.updateState} error={this.state.searchError}/>
         <Results topic={this.state.topic} error={this.state.searchError}/>
       </div>
     );
