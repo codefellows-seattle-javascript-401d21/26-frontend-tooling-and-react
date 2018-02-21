@@ -1,67 +1,134 @@
+// import './styles/main.scss'
 
-import { say, DEFAULT, SQUIRREL, MOOSE, REN, SHEEP, BUNNY, CHEESE, DRAGON, GHOSTBUSTERS } from 'cowsay';
-import faker from 'faker';
-import './styles/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
+import superagent from 'superagent';
 
-class Navbar extends React.Component {
+const API_URL = `https://www.reddit.com/r/`;
+
+class SearchForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topic: '',
+      num: '',
+
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({topic: e.target.value});
+  }
+
+  handleLimitChange(e) {
+    this.setState({num: e.target.value});
+  }
+
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.update_state(this.state.topic, this.state.num);
+  }
+
+  render() {
+    return (
+      <form
+        className='search-form'
+        onSubmit={this.handleSubmit}>
+
+        <input
+          type='text'
+          name='topic'
+          value={this.state.topic}
+          onChange={this.handleChange}
+          placeholder='pick your topic'/>
+
+          <input
+          type='number'
+          max='100'
+          name='limit'
+          value={this.state.num}
+          onChange={this.handleLimitChange}
+          placeholder='pick your topic'/>
+
+        <button type='submit'>Search</button>
+
+      </form>
+    )
+  }
+}
+
+
+class Results extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <header className='main_header'>
-        <h1>Welcome to COWSAY!!!</h1>
-      </header>
+      <div className='results'>
+        {this.props.topic ?
+          <section className='topic-data'>
+            {console.log(this.props.topic)}
+            <h2> Results</h2>
+            <ul>
+              {this.props.topic.data.children.map((a, b) => {
+                return <li key={b}>
+                <a href={a.data.url}><h2>{a.data.title}</h2></a>
+                <p> Ups: {a.data.ups}</p>
+              </li>;
+              })
+            }
+            </ul>
+          </section>
+          :
+          undefined
+        }
+
+        {this.props.error ?
+          <section className='topic-error'>
+            <h2>You broke it.</h2>
+          </section>
+          :
+          undefined
+        }
+      </div>
     );
   }
 }
 
 
-let test = [{val: DEFAULT, name: 'select'},{val:SQUIRREL, name: 'SQUIRREL'}, {val: MOOSE, name: 'MOOSE'}, {val: REN, name: 'REN'}, {val: SHEEP, name: 'SHEEP'}, {val: BUNNY, name: 'BUNNY'}, {val: CHEESE, name: 'CHEESE'}, {val:DRAGON, name: 'DRAGON'}, {val:GHOSTBUSTERS, name: 'GHOSTBUSTERS'} ];
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
-      value: 'select',
+      topic: null,
+      searchError: null,
     };
-
-    this.handleClick = this.handleClick.bind(this);
+    this.searchApi = this.searchApi.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
-  onChange(e) {
-    this.setState({
-      value: e.target.value,
-    });
+  updateState(topic, num) {
+    this.searchApi(topic, num)
+      .then(res => this.setState({topic: res.body, searchError: null}))
+      .catch(err => this.setState({topic: null, searchError: err}));
   }
 
-
-  handleClick() {
-    this.setState(() => 
-      ({content: say({
-        text: faker.random.words(4),
-        cow: `${this.state.value}`,
-      })}));
+  searchApi(topic, num) {
+    return superagent.get(`${API_URL}${topic}.json?limit=${num}`);
   }
 
   render() {
     return (
-      <div className='app'>
-        <Navbar />
-        <div className='picker'>
-          <label className ='label'>pick a Animal  </label>
-          <select value={this.state.value} onChange={this.onChange.bind(this)} className="form-control">
-            {test.map(option => {
-              return <option value={option.val} key={option.name} >{option.name}</option>;
-            })}
-          </select>
-        </div>
-        <button onClick={this.handleClick}>Make Me Talk!</button>
-        <pre>{`${this.state.content}`}</pre>
+      <div className='application'>
+        <SearchForm update_state={this.updateState}/>
+        <Results topic={this.state.topic} error={this.state.searchError}/>
       </div>
     );
   }
