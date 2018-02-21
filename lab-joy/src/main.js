@@ -4,16 +4,16 @@ import './styles/main.scss';
 import faker from 'faker';
 import * as cowsay from 'cowsay';
 
-class App extends React.Component {
+class App extends React.Component { // eslint-disable-line
   constructor(props) {
     super(props);
-    this.state = { content: faker.lorem.sentence() }
+    this.state = { content: cowsay.say({ text: faker.lorem.sentence() }) };
     this.clickButton = this.clickButton.bind(this);
   }
 
   clickButton() {
     this.setState(() => {
-      return { content: faker.lorem.sentence() };
+      return { content: cowsay.say({ text: faker.lorem.sentence() }) };
     });
   }
 
@@ -21,10 +21,10 @@ class App extends React.Component {
     return (
       <div id="wrapper">
         <h1>Generate Cowsay Lorem</h1>
-        <div class="center">
+        <div className="center">
           <button onClick={this.clickButton}>Click Me</button>
         </div>
-        <pre>{cowsay.say({ text: this.state.content })}</pre>
+        <pre>{ this.state.content }</pre>
       </div>
     );
   }
@@ -33,4 +33,4 @@ class App extends React.Component {
 ReactDom.render(
   <App />,
   document.getElementById('root')
-)
+);
