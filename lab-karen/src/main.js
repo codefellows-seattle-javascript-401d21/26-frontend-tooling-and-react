@@ -7,13 +7,18 @@ import ReactDom from 'react-dom';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {content: ''};
+    this.state = {
+      content: say({text: 'What does the cow say?'}),
+    };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    this.setState({content: faker.lorem.sentences});
+    this.setState(() =>
+      ({content: say({
+        text: faker.lorem.sentences(),
+      })}));
   }
 
   render() {
@@ -21,7 +26,9 @@ class App extends React.Component {
       <div className="app">
         <h1>Generate Cowsay Ipsum</h1>
         <button onClick={this.handleClick}>Click Me</button>
-        <pre>{say({text: faker.lorem.sentences()})}</pre>
+        <pre>
+          {this.state.content}
+        </pre>
       </div>
     );
   }
