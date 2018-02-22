@@ -2,7 +2,7 @@
 
 import './styles/main.scss';
 
-// const React = require('react')
+
 import {say, KITTY, ELEPHANT, DRAGON, SHEEP, TURTLE, SQUIRREL, WHALE, GOAT, KOALA, MOOSE, DOGE} from 'cowsay';
 import faker from 'faker';
 import React from 'react';
