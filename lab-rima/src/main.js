@@ -1,29 +1,26 @@
 import './style/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
-
-const cowsay = require('cowsay');
-const faker = require('faker');
+import { say } from 'cowsay';
+import faker from 'faker';
 
 
 class App extends React.Component{
 
   constructor(props){
     super(props);
+
     this.state = {
-      content: cowsay.say({
-        text : faker.lorem.words(5),
-        e : faker.lorem.word(),
-        T : faker.lorem.word()}),
-    };
+      content: say({text : faker.lorem.words(5)}),
+    }
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(){
-    this.setState(() => ({content: cowsay.say({
-      text : faker.lorem.words(5),
-      e : faker.lorem.word(),
-      T : faker.lorem.word()})}));
+    this.setState(() => ({
+      content: say({text : faker.lorem.words(5)}),
+      })
+    );
   }
 
   render(){
