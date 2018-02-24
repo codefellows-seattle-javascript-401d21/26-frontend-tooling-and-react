@@ -3,7 +3,7 @@
 import './style/main.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as cowsay from 'cowsay';
+import {say, list} from 'cowsay-browser';
 import faker from 'faker';
 
 class App extends React.Component{
@@ -11,15 +11,20 @@ class App extends React.Component{
     super(props);
     
     this.state = {
-     content: '',
+      cow: 'cow',
+      content: '',
     },
 
-    this.say = this.say.bind(this);
+    this.handleSay = this.handleSay.bind(this);
+    this.appSetState = this.appSetState.bind(this);
   }
 
-  say(){
-    this.cow = cowsay[document.getElementById("cows-select").value]
-    this.setState({content: cowsay.say({cow: this.cow, text: faker.company.catchPhrase()})});
+  appSetState(cow){
+     this.setState({cow: cow});
+  }
+
+  handleSay(){
+    this.setState({content: say({f: this.state.cow, text: faker.company.catchPhrase()})});
   }
 
   render(){
@@ -28,8 +33,8 @@ class App extends React.Component{
         <h1>Generate Cowsay Lorem</h1>
         <section>
           <div>
-            <Cows />
-            <button onClick={this.say}>Click Me</button>
+            <Cows appSetState={this.appSetState} />
+            <button onClick={this.handleSay}>Click Me</button>
           </div>
           <span>
             <pre className="say-what">{this.state.content}</pre>
@@ -42,18 +47,34 @@ class App extends React.Component{
 
 class Cows extends React.Component{
   constructor(props){
-    super(props)
+    super(props);
 
-    this.cows = Object.keys(cowsay).
-    filter(cow => cow !== 'think' && cow !== 'say')
-    .map((cow, i) => <option key={i} value={cow}>{cow}</option>)
+    this.state = {
+      cows: [],
+      selected: 'cow',
+    }
+
+    this.handleCowSelect = this.handleCowSelect.bind(this);
+  }
+
+  componentWillMount() {
+    list((err, cows) => {
+      this.setState({cows:cows.map((cow, i) => <option key={i} value={cow} >{cow}</option>)});
+    })
+  }
+
+  handleCowSelect(e){
+    console.log(this.props)
+    let selectValue = e.target.value;
+    this.setState({selected:  selectValue});
+    this.props.appSetState(selectValue);
   }
 
   render(){
     return (
-      <select id="cows-select">
-      <option value="DEFAULT">DEFAULT</option>
-      {this.cows}
+      <select onChange={this.handleCowSelect} value={this.state.selected} id="cows-select">
+      <option value="cow"></option>
+      {this.state.cows}
       </select>
     );
   }
