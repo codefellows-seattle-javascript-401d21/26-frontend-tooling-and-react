@@ -6,7 +6,7 @@ const cowsay = require('cowsay');
 const faker = require('faker');
 
 
-class App extends React.Component{ // eslint-disable-line no-unused-vars
+class App extends React.Component{
 
   constructor(props){
     super(props);
