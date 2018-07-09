@@ -1,0 +1,46 @@
+h1 {
+  color: green;
+  text-align: center;
+};
+
+.picker {
+  color: green;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+pre {
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+button {
+  margin-top: 20px;
+  width: 200px;
+}
+
+.box {
+  display: block;
+  text-align: center;
+}
+
+.input {
+  margin-right: 20px;
+  box-shadow: 2px 2px 10px 2px #888888
+}
+
+.error {
+  border: 3px solid red;
+  margin-right: 20px;
+}
+
